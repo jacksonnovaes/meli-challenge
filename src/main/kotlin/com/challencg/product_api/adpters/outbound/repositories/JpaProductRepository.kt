@@ -1,6 +1,6 @@
-package com.challencg.product_api.procuct.adpters.outbound.repositories
+package com.challencg.product_api.adpters.outbound.repositories
 
-import com.challencg.product_api.procuct.adpters.outbound.entities.ProductEntity
+import com.challencg.product_api.adpters.outbound.entities.ProductEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.UUID
 

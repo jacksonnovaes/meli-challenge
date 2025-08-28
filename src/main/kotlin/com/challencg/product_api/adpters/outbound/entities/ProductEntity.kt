@@ -1,4 +1,4 @@
-package com.challencg.product_api.procuct.adpters.outbound.entities
+package com.challencg.product_api.adpters.outbound.entities
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

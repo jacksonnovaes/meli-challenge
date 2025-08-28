@@ -1,4 +1,4 @@
-package com.challencg.product_api.procuct.domain.product
+package com.challencg.product_api.domain.product
 
 data class ProductCategory(
     val id: Long?,

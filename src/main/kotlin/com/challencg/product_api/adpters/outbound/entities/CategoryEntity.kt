@@ -1,4 +1,4 @@
-package com.challencg.product_api.procuct.adpters.outbound.entities
+package com.challencg.product_api.adpters.outbound.entities
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -15,7 +15,7 @@ import java.util.UUID
 data class CategoryEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    val id: UUID,
+    val id: UUID?,
     val name: String,
     @ManyToMany
     @JoinTable  (

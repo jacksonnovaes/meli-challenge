@@ -1,4 +1,4 @@
-package com.challencg.product_api.procuct
+package com.challencg.product_api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
