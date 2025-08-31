@@ -1,12 +1,13 @@
 package com.challencg.product_api.domain.product
 
+import com.challencg.product_api.adpters.outbound.entities.CategoryEntity
 import java.util.*
 
 interface CategoriaRepository {
 
-    fun save(category: Category): Category
+    fun save(category: Category): CategoryEntity
 
-    fun findById(id: UUID): Optional<Category>
+    fun findById(id: Long): Optional<CategoryEntity>
 
-    fun findAll(): List<Category>
+    fun findAll(): List<CategoryEntity>
 }

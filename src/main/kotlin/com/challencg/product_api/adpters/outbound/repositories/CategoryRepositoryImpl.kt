@@ -3,6 +3,7 @@ package com.challencg.product_api.adpters.outbound.repositories
 import com.challencg.product_api.adpters.outbound.entities.CategoryEntity
 import com.challencg.product_api.domain.product.CategoriaRepository
 import com.challencg.product_api.domain.product.Category
+import com.challencg.product_api.domain.product.toEntity
 import org.springframework.stereotype.Repository
 import java.util.Optional
 import java.util.UUID
@@ -11,32 +12,28 @@ import java.util.UUID
 class CategoryRepositoryImpl(
     private val categoryRepository: JpaCategoryRepository
 ) : CategoriaRepository {
-    override fun save(category: Category): Category {
+
+    override fun save(category: Category): CategoryEntity {
+
+
         val categorySaved = CategoryEntity(
-            id = null,
+            id = category.id,
             name = category.name,
-            categorias = emptySet()
+            categoriaPai = category.categoriaPai?.toEntity()
         )
 
         val newCategory = categoryRepository.save(categorySaved)
-        return Category(
-            newCategory.id!!,
-            newCategory.name
-        )
+        return newCategory
     }
 
-    override fun findById(id: UUID): Optional<Category> {
-        return categoryRepository.findById(id).map { it
-            Category(
-                it.id!!,
-                it.name
-            )
-        }
+    override fun findById(id: Long): Optional<CategoryEntity> {
+        return categoryRepository.findById(id)
+
     }
 
-    override fun findAll(): List<Category> {
+    override fun findAll(): List<CategoryEntity> {
        return categoryRepository.findAll().map { it ->
-           Category(
+           CategoryEntity(
                it.id!!,
                it.name
            )

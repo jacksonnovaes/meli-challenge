@@ -1,27 +1,23 @@
 package com.challencg.product_api.adpters.outbound.entities
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.JoinTable
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.Table
-import java.util.UUID
+import com.challencg.product_api.domain.product.Category
+import jakarta.persistence.*
 
 @Table(name="tb_category")
 @Entity
 data class CategoryEntity(
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    val id: UUID?,
-    val name: String,
-    @ManyToMany
-    @JoinTable  (
-    name = "tb_produto_categoria",
-    joinColumns = [JoinColumn(name = "produto_id")],
-    inverseJoinColumns = [JoinColumn(name = "categoria_id")]
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+    val name: String = "",
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    val categoriaPai: CategoryEntity? = null
 )
-val categorias: Set<CategoryEntity> = mutableSetOf()
-)
+
+fun CategoryEntity.toDomain(): Category =
+    Category(
+        id = this.id,
+        name = this.name,
+        categoriaPai = this.categoriaPai?.toDomain()
+    )
