@@ -17,7 +17,10 @@ class ProductRepositoryImpl(
         val productToSave = ProductEntity(
             id = null,
             name = product.name,
-            category = product.category?.id
+            category = product.category?.id,
+            descricao = product.descricao,
+            rate = product.rate,
+            price = product.price
         )
 
         val newProduct = jpaProductRepository.save(productToSave)
@@ -37,6 +40,9 @@ class ProductRepositoryImpl(
         return Product(
             id = newProduct.id,
             name = newProduct.name,
+            descricao = newProduct.descricao,
+            rate = newProduct.rate,
+            price = newProduct.price,
             category = category
         )
     }
@@ -59,7 +65,10 @@ class ProductRepositoryImpl(
         return Product(
             id = productEntity.id!!,
             name = productEntity.name,
-            category = category
+            descricao = productEntity.descricao,
+            rate = productEntity.rate,
+            category = category,
+            price = productEntity.price
         )
     }
 
@@ -81,7 +90,10 @@ class ProductRepositoryImpl(
             Product(
                 id = entity.id!!,
                 name = entity.name,
-                category = category
+                category = category,
+                descricao = entity.descricao,
+                rate = entity.rate,
+                price = entity.price
             )
         }
     }

@@ -33,13 +33,13 @@ class CategoryControllerImpl(
 
 
     @PostMapping("/{id}")
-    override fun saveCategoriaPai(@PathVariable id: Long, @RequestBody categoryId: Long): ResponseEntity<CategoryResponseDTO> {
+    override fun saveCategoriaPai(@PathVariable id: Long, @RequestBody categoryIds: Long): ResponseEntity<CategoryResponseDTO> {
         val categoryFound = categoryUseCases.detailCategory(id)
             .orElseThrow { RuntimeException("Categoria $id não encontrada") }
 
         val categoriasPai =
-            categoryUseCases.detailCategory(categoryId)
-                .orElseThrow { RuntimeException("Categoria pai $categoryId não encontrada")}
+            categoryUseCases.detailCategory(categoryIds)
+                .orElseThrow { RuntimeException("Categoria pai $categoryIds não encontrada")}
 
         val updatedCategory = Category(
             id = categoryFound.id,
